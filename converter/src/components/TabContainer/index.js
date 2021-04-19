@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { MDBContainer, MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import Converter from './Converter';
-import RatesActionCreators from '../../store/currency/actions';
+import CurrencyActionCreators from '../../store/currency/actions';
 
 class TabContainer extends Component {
 	constructor(props) {
@@ -60,7 +60,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	requestCurrencyValues: () => dispatch(RatesActionCreators.getCurrencyLatest()),
+	requestCurrencyValues: () => dispatch(CurrencyActionCreators.getCurrencyLatest()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TabContainer);

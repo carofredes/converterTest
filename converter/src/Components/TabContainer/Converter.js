@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 
-import RatesActionCreators from '../../store/currency/actions';
+import CurrencyActionCreators from '../../store/currency/actions';
 
 class Converter extends Component {
 	constructor(props) {
@@ -10,22 +10,44 @@ class Converter extends Component {
 		this.state = {
 			ammountBase: 0,
 			ammountConverted: 0,
-			showConversion: false,
-			conversionOptions: ['GBP', 'USD'],
+			currentBase: '',
+			conversionBase: '',
+			showConversion: false
 		};
 	}
+
+	componentDidUpdate(prevProps) {
+		const {
+			currency: { base }
+		} = this.props;
+		if (base !== prevProps.currency.base) {
+			this.setState({ currentBase: base });
+		}
+	}
+
+	updateAmmountBase = (e) => {
+		this.setState({ ammountBase: e.target.value });
+	};
+
+	handleChangeSelect = (e) => {
+		const { name, value } = e.target;
+		this.setState({
+			[name]: value
+		});
+	};
+
 	handleConvert = () => {
 		const { requestCurrencyValues } = this.props;
 		requestCurrencyValues();
 		this.setState({ showConversion: true });
 	};
 
-	updateAmmountBase = (e) => {
-		this.setState({ ammountBase: e.target.value });
-	};
-
 	render() {
-		const { ammountBase, ammountConverted, showConversion, conversionOptions } = this.state;
+		const { ammountBase, ammountConverted, showConversion, currentBase } = this.state;
+		const {
+			currency: { conversionOptions }
+		} = this.props;
+		console.log(this.props, this.state);
 		return (
 			<MDBContainer>
 				<form>
@@ -47,10 +69,16 @@ class Converter extends Component {
 								From
 							</label>
 
-							<select className='browser-default custom-select' id='fromField'>
+							<select
+								className='browser-default custom-select'
+								id='fromField'
+								name='currentBase'
+								value={currentBase}
+								onChange={this.handleChangeSelect}
+							>
 								<option>Choose your option</option>
 								{conversionOptions.map((cOption) => (
-									<option key={cOption} value='1'>
+									<option key={cOption} value={cOption}>
 										{cOption}
 									</option>
 								))}
@@ -60,10 +88,15 @@ class Converter extends Component {
 							<label htmlFor='toField' className='grey-text font-weight-light'>
 								To
 							</label>
-							<select className='browser-default custom-select' id='toField'>
+							<select
+								className='browser-default custom-select'
+								id='toField'
+								name='conversionBase'
+								onChange={this.handleChangeSelect}
+							>
 								<option>Choose your option</option>
 								{conversionOptions.map((cOption) => (
-									<option key={cOption} value='1'>
+									<option key={cOption} value={cOption}>
 										{cOption}
 									</option>
 								))}
@@ -87,11 +120,11 @@ class Converter extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	currencyInfo: state.currency,
+	currency: state.currency
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	requestCurrencyValues: () => dispatch(RatesActionCreators.getCurrencyLatest()),
+	requestCurrencyValues: () => dispatch(CurrencyActionCreators.getCurrencyLatest())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Converter);
