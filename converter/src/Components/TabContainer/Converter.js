@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon } from 'mdbreact';
+import RatesActionCreators from '../../store/currency/actions';
 
 class Converter extends Component {
+	handleConvert = () => {
+		const { requestCurrencyValues } = this.props;
+		requestCurrencyValues();
+	};
+
 	render() {
-		console.log(this.props);
 		return (
 			<MDBContainer>
 				<form>
@@ -44,7 +49,9 @@ class Converter extends Component {
 							</MDBRow>
 						</MDBCol>
 					</MDBRow>
-					<MDBBtn className='btn'>Convert</MDBBtn>
+					<MDBBtn className='btn' onClick={this.handleConvert}>
+						Convert
+					</MDBBtn>
 				</form>
 			</MDBContainer>
 		);
@@ -52,9 +59,11 @@ class Converter extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	rates: state.rates,
+	currencyInfo: state.currency,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+	requestCurrencyValues: () => dispatch(RatesActionCreators.getCurrencyLatest()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Converter);
