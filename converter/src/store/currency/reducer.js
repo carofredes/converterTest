@@ -3,7 +3,8 @@ import CurrencyConstants from './constants';
 const initialState = {
 	base: '',
 	date: '',
-	conversionOptions: []
+	conversionOptions: [],
+	rates: []
 };
 
 const updateCurrencyInfo = (payload, state) => {
@@ -16,7 +17,8 @@ const updateCurrencyInfo = (payload, state) => {
 		...state,
 		base,
 		date,
-		conversionOptions: conversionOptions.sort()
+		conversionOptions: conversionOptions.sort(),
+		rates
 	};
 };
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 
 import CurrencyActionCreators from '../../store/currency/actions';
+import ConversionResult from './ConversionResult';
 
 class Converter extends Component {
 	constructor(props) {
@@ -37,15 +38,19 @@ class Converter extends Component {
 	};
 
 	handleConvert = () => {
-		const { requestCurrencyValues } = this.props;
-		requestCurrencyValues();
+		// const {
+		// 	requestCurrencyValues,
+
+		// } = this.props;
+		// //requestCurrencyValues();
+
 		this.setState({ showConversion: true });
 	};
 
 	render() {
-		const { ammountBase, ammountConverted, showConversion, currentBase } = this.state;
+		const { ammountBase, ammountConverted, showConversion, currentBase, conversionBase } = this.state;
 		const {
-			currency: { conversionOptions }
+			currency: { conversionOptions, rates }
 		} = this.props;
 		console.log(this.props, this.state);
 		return (
@@ -103,16 +108,20 @@ class Converter extends Component {
 							</select>
 						</MDBCol>
 					</MDBRow>
-					<MDBBtn className='btn' onClick={this.handleConvert}>
-						Convert
-					</MDBBtn>
+					{!showConversion && (
+						<MDBBtn className='btn' onClick={this.handleConvert}>
+							Convert
+						</MDBBtn>
+					)}
 				</form>
 				{showConversion && (
-					<MDBRow>
-						<p>
-							conversion {ammountBase} - {ammountConverted}
-						</p>
-					</MDBRow>
+					<ConversionResult
+						ammountBase={ammountBase}
+						currentBase={currentBase}
+						ammountConverted={ammountConverted}
+						conversionBase={conversionBase}
+						rates={rates}
+					/>
 				)}
 			</MDBContainer>
 		);
