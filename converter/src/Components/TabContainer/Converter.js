@@ -5,54 +5,82 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 import RatesActionCreators from '../../store/currency/actions';
 
 class Converter extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			ammountBase: 0,
+			ammountConverted: 0,
+			showConversion: false,
+			conversionOptions: ['GBP', 'USD'],
+		};
+	}
 	handleConvert = () => {
 		const { requestCurrencyValues } = this.props;
 		requestCurrencyValues();
+		this.setState({ showConversion: true });
+	};
+
+	updateAmmountBase = (e) => {
+		this.setState({ ammountBase: e.target.value });
 	};
 
 	render() {
+		const { ammountBase, ammountConverted, showConversion, conversionOptions } = this.state;
 		return (
 			<MDBContainer>
 				<form>
 					<MDBRow>
-						<MDBCol md='6'>
-							<MDBRow>
-								<MDBCol md='12'>
-									<label htmlFor='fromField' className='grey-text font-weight-light'>
-										From
-									</label>
-									<input type='text' id='fromField' className='form-control' />
-								</MDBCol>
-								<MDBCol md='12'>
-									<label htmlFor='ammountFromField' className='grey-text font-weight-light'>
-										Ammount:
-									</label>
-									<input type='text' id='ammountFromField' className='form-control' />
-								</MDBCol>
-							</MDBRow>
+						<MDBCol md='4'>
+							<label htmlFor='ammountFromField' className='grey-text font-weight-light'>
+								Ammount:
+							</label>
+							<input
+								type='number'
+								id='ammountFromField'
+								className='form-control'
+								value={ammountBase}
+								onChange={this.updateAmmountBase}
+							/>
 						</MDBCol>
-						<MDBCol md='6'>
-							<MDBRow>
-								<MDBCol md='12'>
-									<label htmlFor='toField' className='grey-text font-weight-light'>
-										To
-									</label>
-									<input type='email' id='toField' className='form-control' />
-								</MDBCol>
+						<MDBCol md='4'>
+							<label htmlFor='fromField' className='grey-text font-weight-light'>
+								From
+							</label>
 
-								<MDBCol md='12'>
-									<label htmlFor='ammountToField' className='grey-text font-weight-light'>
-										Ammount:
-									</label>
-									<input type='email' id='ammountToField' className='form-control' />
-								</MDBCol>
-							</MDBRow>
+							<select className='browser-default custom-select' id='fromField'>
+								<option>Choose your option</option>
+								{conversionOptions.map((cOption) => (
+									<option key={cOption} value='1'>
+										{cOption}
+									</option>
+								))}
+							</select>
+						</MDBCol>
+						<MDBCol md='4'>
+							<label htmlFor='toField' className='grey-text font-weight-light'>
+								To
+							</label>
+							<select className='browser-default custom-select' id='toField'>
+								<option>Choose your option</option>
+								{conversionOptions.map((cOption) => (
+									<option key={cOption} value='1'>
+										{cOption}
+									</option>
+								))}
+							</select>
 						</MDBCol>
 					</MDBRow>
 					<MDBBtn className='btn' onClick={this.handleConvert}>
 						Convert
 					</MDBBtn>
 				</form>
+				{showConversion && (
+					<MDBRow>
+						<p>
+							conversion {ammountBase} - {ammountConverted}
+						</p>
+					</MDBRow>
+				)}
 			</MDBContainer>
 		);
 	}
