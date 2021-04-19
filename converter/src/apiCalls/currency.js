@@ -1,9 +1,16 @@
 import axios from 'axios';
 import { baseAddress } from './general';
 
-export function GETCurrencyLatest() {
+export function GETEuroLatest() {
 	return axios({
 		url: `${baseAddress}/latest`,
-		method: 'GET',
+		method: 'GET'
+	});
+}
+
+export function GETCurrencyLatest(currency) {
+	return axios({
+		url: `${baseAddress}/latest?base=${currency} `,
+		method: 'GET'
 	});
 }

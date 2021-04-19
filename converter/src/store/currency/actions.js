@@ -1,19 +1,30 @@
 import CurrencyConstants from './constants';
-import { GETCurrencyLatest } from '../../apiCalls/currency';
+import { GETEuroLatest, GETCurrencyLatest } from '../../apiCalls/currency';
 
 const CurrencyActionCreators = {
-	getCurrencyLatest: () => async (dispatch, getState) => {
+	getEuroLatest: () => async (dispatch, getState) => {
 		try {
-			const { data: currencyInfo } = await GETCurrencyLatest();
+			const { data: currencyInfo } = await GETEuroLatest();
 			dispatch({
 				type: CurrencyConstants.UPDATE_CURRENCY,
-				payload: currencyInfo,
+				payload: currencyInfo
 			});
-			console.log('currencyInfo', currencyInfo);
 		} catch (error) {
 			console.log('error', error.message);
 		}
 	},
+	getCurrencyLatest: (base) => async (dispatch, getState) => {
+		try {
+			const { data: currencyInfo } = await GETCurrencyLatest(base);
+
+			dispatch({
+				type: CurrencyConstants.UPDATE_CURRENCY,
+				payload: currencyInfo
+			});
+		} catch (error) {
+			console.log('error', error.message);
+		}
+	}
 };
 
 export default CurrencyActionCreators;

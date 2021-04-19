@@ -30,6 +30,21 @@ class Converter extends Component {
 		this.setState({ ammountBase: e.target.value });
 	};
 
+	handleChangeBase = (e) => {
+		const { requestCurrencyLatest } = this.props;
+		const { value } = e.target;
+		this.setState({
+			currentBase: value
+		});
+		requestCurrencyLatest(value);
+	};
+
+	/**
+	 *
+	 * I could had only this method to control both selects
+	 * but as I need to call another function when the base changes,
+	 * I prefered to add another method specific for that
+	 */
 	handleChangeSelect = (e) => {
 		const { name, value } = e.target;
 		this.setState({
@@ -38,12 +53,6 @@ class Converter extends Component {
 	};
 
 	handleConvert = () => {
-		// const {
-		// 	requestCurrencyValues,
-
-		// } = this.props;
-		// //requestCurrencyValues();
-
 		this.setState({ showConversion: true });
 	};
 
@@ -52,7 +61,7 @@ class Converter extends Component {
 		const {
 			currency: { conversionOptions, rates }
 		} = this.props;
-		console.log(this.props, this.state);
+		//	console.log(this.props, this.state);
 		return (
 			<MDBContainer>
 				<form>
@@ -79,7 +88,7 @@ class Converter extends Component {
 								id='fromField'
 								name='currentBase'
 								value={currentBase}
-								onChange={this.handleChangeSelect}
+								onChange={this.handleChangeBase}
 							>
 								<option>Choose your option</option>
 								{conversionOptions.map((cOption) => (
@@ -133,7 +142,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	requestCurrencyValues: () => dispatch(CurrencyActionCreators.getCurrencyLatest())
+	requestCurrencyLatest: (base) => dispatch(CurrencyActionCreators.getCurrencyLatest(base))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Converter);

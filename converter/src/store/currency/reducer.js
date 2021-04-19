@@ -1,5 +1,6 @@
 import CurrencyConstants from './constants';
 
+const BASE_CURRENCY = 'EUR';
 const initialState = {
 	base: '',
 	date: '',
@@ -10,9 +11,11 @@ const initialState = {
 const updateCurrencyInfo = (payload, state) => {
 	const { rates, base, date } = payload;
 	const conversionOptions = Object.keys(rates);
-	// This is needed because the API doesnt include the base currency
+	// This is needed because the API doesnt include EUR currency when using EUR as base
 	// and I prefer to display all possible options on the dropdown
-	conversionOptions.push(base);
+	if (base === BASE_CURRENCY) {
+		conversionOptions.push(base);
+	}
 	return {
 		...state,
 		base,

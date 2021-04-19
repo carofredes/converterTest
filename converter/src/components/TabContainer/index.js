@@ -8,19 +8,19 @@ class TabContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeItem: '1',
+			activeItem: '1'
 		};
 	}
 
 	componentDidMount() {
-		const { requestCurrencyValues } = this.props;
-		requestCurrencyValues();
+		const { requestEuroLatest } = this.props;
+		requestEuroLatest();
 	}
 
 	toggle = (tab) => (e) => {
 		if (this.state.activeItem !== tab) {
 			this.setState({
-				activeItem: tab,
+				activeItem: tab
 			});
 		}
 	};
@@ -56,11 +56,11 @@ class TabContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	currencyInfo: state.currency,
+	currencyInfo: state.currency
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	requestCurrencyValues: () => dispatch(CurrencyActionCreators.getCurrencyLatest()),
+	requestEuroLatest: () => dispatch(CurrencyActionCreators.getEuroLatest())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TabContainer);
