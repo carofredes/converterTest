@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { MDBContainer, MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import Converter from './Converter';
+import RatesActionCreators from '../../store/currency/actions';
 
 class TabContainer extends Component {
 	constructor(props) {
@@ -8,6 +10,11 @@ class TabContainer extends Component {
 		this.state = {
 			activeItem: '1',
 		};
+	}
+
+	componentDidMount() {
+		const { requestCurrencyValues } = this.props;
+		requestCurrencyValues();
 	}
 
 	toggle = (tab) => (e) => {
@@ -47,4 +54,13 @@ class TabContainer extends Component {
 		);
 	}
 }
-export default TabContainer;
+
+const mapStateToProps = (state) => ({
+	currencyInfo: state.currency,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	requestCurrencyValues: () => dispatch(RatesActionCreators.getCurrencyLatest()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TabContainer);
