@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon } from 'mdbreact';
 
-export default class Converter extends Component {
+class Converter extends Component {
 	render() {
+		console.log(this.props);
 		return (
 			<MDBContainer>
 				<form>
@@ -47,3 +50,11 @@ export default class Converter extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => ({
+	rates: state.rates,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Converter);
