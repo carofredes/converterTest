@@ -1,8 +1,8 @@
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
-import Footer from './Components/Footer';
-import Header from './Components/Header';
-import TabContainer from './Components/TabContainer/TabContainer';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import TabContainer from './components/TabContainer';
 
 function App() {
 	return (
