@@ -20,7 +20,7 @@ class ConversionResult extends Component {
 				</MDBRow>
 				<MDBRow>
 					<p>
-						{ammountBase}
+						{ammountBase || 0}
 						{currentBase} =
 					</p>
 					<p>

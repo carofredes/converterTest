@@ -9,25 +9,31 @@ class Converter extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			ammountBase: 0,
+			ammountBase: '',
 			ammountConverted: 0,
 			currentBase: '',
 			conversionBase: '',
-			showConversion: false
+			showConversion: false,
+			disableConvert: true
 		};
 	}
 
 	componentDidUpdate(prevProps) {
 		const {
-			currency: { base }
+			currency: { base, conversionOptions }
 		} = this.props;
 		if (base !== prevProps.currency.base) {
 			this.setState({ currentBase: base });
+			if (this.state.conversionBase === '') {
+				this.setState({ conversionBase: conversionOptions[0] });
+			}
 		}
 	}
 
 	updateAmmountBase = (e) => {
-		this.setState({ ammountBase: e.target.value });
+		const value = e.target.valueAsNumber || '';
+
+		this.setState({ ammountBase: value, disableConvert: value < 0 || value === '' });
 	};
 
 	handleChangeBase = (e) => {
@@ -47,6 +53,7 @@ class Converter extends Component {
 	 */
 	handleChangeSelect = (e) => {
 		const { name, value } = e.target;
+
 		this.setState({
 			[name]: value
 		});
@@ -57,11 +64,11 @@ class Converter extends Component {
 	};
 
 	render() {
-		const { ammountBase, ammountConverted, showConversion, currentBase, conversionBase } = this.state;
+		const { ammountBase, ammountConverted, showConversion, currentBase, conversionBase, disableConvert } = this.state;
 		const {
 			currency: { conversionOptions, rates }
 		} = this.props;
-		//	console.log(this.props, this.state);
+
 		return (
 			<MDBContainer>
 				<form>
@@ -75,6 +82,8 @@ class Converter extends Component {
 								id='ammountFromField'
 								className='form-control'
 								value={ammountBase}
+								placeholder='Enter ammount'
+								required
 								onChange={this.updateAmmountBase}
 							/>
 						</MDBCol>
@@ -89,8 +98,8 @@ class Converter extends Component {
 								name='currentBase'
 								value={currentBase}
 								onChange={this.handleChangeBase}
+								placeholder='Choose your option'
 							>
-								<option>Choose your option</option>
 								{conversionOptions.map((cOption) => (
 									<option key={cOption} value={cOption}>
 										{cOption}
@@ -107,8 +116,8 @@ class Converter extends Component {
 								id='toField'
 								name='conversionBase'
 								onChange={this.handleChangeSelect}
+								placeholder='Choose your option'
 							>
-								<option>Choose your option</option>
 								{conversionOptions.map((cOption) => (
 									<option key={cOption} value={cOption}>
 										{cOption}
@@ -118,7 +127,7 @@ class Converter extends Component {
 						</MDBCol>
 					</MDBRow>
 					{!showConversion && (
-						<MDBBtn className='btn' onClick={this.handleConvert}>
+						<MDBBtn className='btn' onClick={this.handleConvert} disabled={disableConvert}>
 							Convert
 						</MDBBtn>
 					)}
