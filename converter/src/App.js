@@ -9,6 +9,7 @@ function App() {
 		<BrowserRouter>
 			<div className='App'>
 				<Header />
+				<div className='background-gradient'></div>
 				<TabContainer />
 				<Footer />
 			</div>

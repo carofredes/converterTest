@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { MDBContainer, MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
+import { MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import Converter from './Converter';
 import CurrencyActionCreators from '../../store/currency/actions';
+import ContainerWrapper from './index.style';
 
 class TabContainer extends Component {
 	constructor(props) {
@@ -28,8 +29,8 @@ class TabContainer extends Component {
 	render() {
 		const { activeItem } = this.state;
 		return (
-			<MDBContainer>
-				<MDBNav className='nav-tabs mt-5'>
+			<ContainerWrapper>
+				<MDBNav className='nav-tabs'>
 					<MDBNavItem>
 						<MDBNavLink link to='#' active={activeItem === '1'} onClick={this.toggle('1')} role='tab'>
 							<MDBIcon icon='coins' className='mr-2' /> Converter
@@ -50,7 +51,7 @@ class TabContainer extends Component {
 						<p className='mt-2'>Charts</p>
 					</MDBTabPane>
 				</MDBTabContent>
-			</MDBContainer>
+			</ContainerWrapper>
 		);
 	}
 }

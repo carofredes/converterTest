@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { MDBRow } from 'mdbreact';
-
+import { MDBCol, MDBRow } from 'mdbreact';
+import ResultsWrapper from './ConversionResult.style';
 import currencyExtraInfo from '../../currencyExtras';
 
 class ConversionResult extends Component {
@@ -11,47 +11,35 @@ class ConversionResult extends Component {
 	};
 
 	render() {
-		const { ammountBase, rates, currentBase, conversionBase } = this.props;
+		const { ammountBase, rates, currentBase, conversionBase, date } = this.props;
 		return (
-			<div>
-				<MDBRow>
-					<p>
-						<img
-							src={`https://www.countryflags.io/${currentBase && currencyExtraInfo[currentBase].flag}/flat/24.png`}
-							alt='flag'
-						/>
-						1{currentBase}={' '}
-						<img
-							src={`https://www.countryflags.io/${
-								conversionBase && currencyExtraInfo[conversionBase].flag
-							}/flat/24.png`}
-							alt='flag'
-						/>
-						{rates[conversionBase]}
-						{conversionBase}
-					</p>
+			<ResultsWrapper>
+				{/* Result Container */}
+				<MDBRow className='ammount-base'>
+					<img
+						src={`https://www.countryflags.io/${currentBase && currencyExtraInfo[currentBase].flag}/flat/24.png`}
+						alt='flag'
+					/>
+					<p className='m-0 ml-2'>{` ${ammountBase || 0} ${
+						currencyExtraInfo[currentBase].description || currentBase
+					} =`}</p>
+				</MDBRow>
+				<MDBRow className='ammount-converted mb-5'>
+					<img
+						src={`https://www.countryflags.io/${conversionBase && currencyExtraInfo[conversionBase].flag}/flat/48.png`}
+						alt='flag'
+					/>
+					<p className='m-0 ml-2'>{` ${this.calculateConversion()} ${
+						currencyExtraInfo[conversionBase].description || conversionBase
+					}`}</p>
 				</MDBRow>
 				<MDBRow>
-					<p>
-						<img
-							src={`https://www.countryflags.io/${currentBase && currencyExtraInfo[currentBase].flag}/flat/24.png`}
-							alt='flag'
-						/>
-						{ammountBase || 0}
-						{currentBase} =
-					</p>
-					<p>
-						<img
-							src={`https://www.countryflags.io/${
-								conversionBase && currencyExtraInfo[conversionBase].flag
-							}/flat/24.png`}
-							alt='flag'
-						/>
-						{this.calculateConversion()}
-						{conversionBase}
-					</p>
+					<MDBCol md='6'>{`1 ${currentBase} = ${rates[conversionBase]} ${conversionBase}`}</MDBCol>
+					<MDBCol md='6'>
+						<p className='text-right'>{`Last updated ${date}`}</p>
+					</MDBCol>
 				</MDBRow>
-			</div>
+			</ResultsWrapper>
 		);
 	}
 }

@@ -1,2 +1,14 @@
 .App {
+	height: 100vh;
+}
+
+.App .background-gradient {
+	background: rgb(21, 153, 87);
+	background: linear-gradient(120deg, rgba(21, 153, 87, 1) 0%, rgba(21, 87, 153, 1) 100%);
+	position: absolute;
+	top: 90px;
+	width: 100%;
+	left: 0;
+	height: 40vh;
+	z-index: -1;
 }

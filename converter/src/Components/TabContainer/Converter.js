@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
+import { MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 
 import CurrencyActionCreators from '../../store/currency/actions';
 import ConversionResult from './ConversionResult';
 import currencyExtraInfo from '../../currencyExtras';
+import ConverterWrapper from './Converter.style';
 
 class Converter extends Component {
 	constructor(props) {
@@ -67,14 +68,14 @@ class Converter extends Component {
 	render() {
 		const { ammountBase, ammountConverted, showConversion, currentBase, conversionBase, disableConvert } = this.state;
 		const {
-			currency: { conversionOptions, rates }
+			currency: { conversionOptions, rates, date }
 		} = this.props;
 		return (
-			<MDBContainer>
-				<form>
+			<ConverterWrapper className='p-5'>
+				<form className='d-flex flex-column'>
 					<MDBRow>
 						<MDBCol md='4'>
-							<label htmlFor='ammountFromField' className='grey-text font-weight-light'>
+							<label htmlFor='ammountFromField' className='font-weight-bolder'>
 								Ammount:
 							</label>
 							<input
@@ -88,7 +89,7 @@ class Converter extends Component {
 							/>
 						</MDBCol>
 						<MDBCol md='4'>
-							<label htmlFor='fromField' className='grey-text font-weight-light'>
+							<label htmlFor='fromField' className='font-weight-bolder'>
 								From
 							</label>
 
@@ -108,7 +109,7 @@ class Converter extends Component {
 							</select>
 						</MDBCol>
 						<MDBCol md='4'>
-							<label htmlFor='toField' className='grey-text font-weight-light'>
+							<label htmlFor='toField' className='font-weight-bolder'>
 								To
 							</label>
 							<select
@@ -127,7 +128,12 @@ class Converter extends Component {
 						</MDBCol>
 					</MDBRow>
 					{!showConversion && (
-						<MDBBtn className='btn' onClick={this.handleConvert} disabled={disableConvert}>
+						<MDBBtn
+							color='light-green'
+							className='btn-convert mt-5  align-self-end'
+							onClick={this.handleConvert}
+							disabled={disableConvert}
+						>
 							Convert
 						</MDBBtn>
 					)}
@@ -139,9 +145,10 @@ class Converter extends Component {
 						ammountConverted={ammountConverted}
 						conversionBase={conversionBase}
 						rates={rates}
+						date={date}
 					/>
 				)}
-			</MDBContainer>
+			</ConverterWrapper>
 		);
 	}
 }
