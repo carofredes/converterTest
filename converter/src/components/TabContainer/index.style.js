@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import { MDBContainer } from 'mdbreact';
+import { screenSizes } from '../../screenSizes';
 
 const ContainerWrapper = styled(MDBContainer)`
+	margin-top: 50px;
+	width: 90%;
 	font-family: Inter, sans-serif;
 	color: #2e3c57;
 	background: #fff;
@@ -9,12 +12,16 @@ const ContainerWrapper = styled(MDBContainer)`
 	padding: 0;
 	min-height: 50%;
 	border: 1px solid lightgrey;
-	margin-top: 100px;
 	display: flex;
 	flex-direction: column;
 
 	.tab-content {
 		flex: 1;
+	}
+
+	@media ${screenSizes.big} {
+		margin-top: 100px;
+		width: 100%;
 	}
 `;
 

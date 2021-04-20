@@ -1,11 +1,13 @@
 import styled from 'styled-components';
+import { screenSizes } from '../screenSizes';
 
 const MDBNavbarWrapper = styled.div`
 	color: #050505;
-	padding: 20px;
+	padding: 10px;
 
 	.navbar-brand {
-		margin-left: 75px;
+		text-align: center;
+		width: 100%;
 	}
 
 	.logo {
@@ -19,6 +21,16 @@ const MDBNavbarWrapper = styled.div`
 		font-weight: 700;
 		font-size: 24px;
 		padding-left: 11px;
+	}
+
+	@media ${screenSizes.big} {
+		padding: 20px;
+
+		.navbar-brand {
+			margin-left: 75px;
+			text-align: left;
+			width: auto%;
+		}
 	}
 `;
 

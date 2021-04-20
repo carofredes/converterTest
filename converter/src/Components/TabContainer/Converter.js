@@ -71,10 +71,10 @@ class Converter extends Component {
 			currency: { conversionOptions, rates, date }
 		} = this.props;
 		return (
-			<ConverterWrapper className='p-5'>
+			<ConverterWrapper className='p-3 p-lg-5'>
 				<form className='d-flex flex-column'>
 					<MDBRow>
-						<MDBCol md='4'>
+						<MDBCol md='4' className='mb-3 mb-lg-0'>
 							<label htmlFor='ammountFromField' className='font-weight-bolder'>
 								Ammount:
 							</label>
@@ -88,7 +88,7 @@ class Converter extends Component {
 								onChange={this.updateAmmountBase}
 							/>
 						</MDBCol>
-						<MDBCol md='4'>
+						<MDBCol md='4' className='mb-3 mb-lg-0'>
 							<label htmlFor='fromField' className='font-weight-bolder'>
 								From
 							</label>

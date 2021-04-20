@@ -34,9 +34,11 @@ class ConversionResult extends Component {
 					}`}</p>
 				</MDBRow>
 				<MDBRow>
-					<MDBCol md='6'>{`1 ${currentBase} = ${rates[conversionBase]} ${conversionBase}`}</MDBCol>
 					<MDBCol md='6'>
-						<p className='text-right'>{`Last updated ${date}`}</p>
+						<p className='mb-1 text-center text-md-left'>{`1 ${currentBase} = ${rates[conversionBase]} ${conversionBase}`}</p>
+					</MDBCol>
+					<MDBCol md='6'>
+						<p className='mb-1 text-center text-md-right'>{`Last updated ${date}`}</p>
 					</MDBCol>
 				</MDBRow>
 			</ResultsWrapper>
