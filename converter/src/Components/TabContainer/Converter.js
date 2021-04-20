@@ -4,6 +4,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 
 import CurrencyActionCreators from '../../store/currency/actions';
 import ConversionResult from './ConversionResult';
+import currencyExtraInfo from '../../currencyExtras';
 
 class Converter extends Component {
 	constructor(props) {
@@ -68,7 +69,6 @@ class Converter extends Component {
 		const {
 			currency: { conversionOptions, rates }
 		} = this.props;
-
 		return (
 			<MDBContainer>
 				<form>
@@ -102,7 +102,7 @@ class Converter extends Component {
 							>
 								{conversionOptions.map((cOption) => (
 									<option key={cOption} value={cOption}>
-										{cOption}
+										{cOption} - {cOption && currencyExtraInfo[cOption].description}
 									</option>
 								))}
 							</select>
@@ -120,7 +120,7 @@ class Converter extends Component {
 							>
 								{conversionOptions.map((cOption) => (
 									<option key={cOption} value={cOption}>
-										{cOption}
+										{cOption} - {cOption && currencyExtraInfo[cOption].description}
 									</option>
 								))}
 							</select>
