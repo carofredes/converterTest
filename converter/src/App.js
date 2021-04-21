@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
-import Footer from './components/Footer';
 import Header from './components/Header';
 import TabContainer from './components/TabContainer';
 import { IntlProvider } from 'react-intl';
@@ -16,7 +15,6 @@ function App() {
 					<Header />
 					<div className='background-gradient'></div>
 					<TabContainer />
-					<Footer />
 				</main>
 			</BrowserRouter>
 		</IntlProvider>
