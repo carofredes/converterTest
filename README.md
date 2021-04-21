@@ -1,7 +1,7 @@
 # converterTest
 
 The way of getting the images for the flags is not the best because Im making multiple request for each one and it's too harcoded. It will be better to have an API that sends the rates with the description text and the img for the flag to prevent any issue/typo, but I think it's good enough for a demo and it gives me more room to play with CSS.
-https://www.countryflags.io/
+https://flagpedia.net
 
 One improvement could be limit the number of decimals or if there are more than 3 decimal numbers, after the third decimal style the rest using a lighter font color so it's not so anoying
 
