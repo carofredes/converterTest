@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { MDBRow, MDBCol, MDBBtn } from 'mdbreact';
-
+import { FormattedMessage } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import CurrencyActionCreators from '../../store/currency/actions';
 import ConversionResult from './ConversionResult';
 import currencyExtraInfo from '../../currencyExtras';
@@ -68,29 +69,33 @@ class Converter extends Component {
 	render() {
 		const { ammountBase, ammountConverted, showConversion, currentBase, conversionBase, disableConvert } = this.state;
 		const {
-			currency: { conversionOptions, rates, date }
+			currency: { conversionOptions, rates, date },
+			intl: { formatMessage }
 		} = this.props;
+
 		return (
 			<ConverterWrapper className='p-3 p-lg-5'>
 				<form className='d-flex flex-column'>
 					<MDBRow>
 						<MDBCol md='4' className='mb-3 mb-lg-0'>
 							<label htmlFor='ammountFromField' className='font-weight-bolder'>
-								Ammount:
+								<FormattedMessage id='Converter.ammount' />
 							</label>
 							<input
 								type='number'
 								id='ammountFromField'
 								className='form-control'
 								value={ammountBase}
-								placeholder='Enter ammount'
+								placeholder={formatMessage({
+									id: 'Converter.ammount.placeholder'
+								})}
 								required
 								onChange={this.updateAmmountBase}
 							/>
 						</MDBCol>
 						<MDBCol md='4' className='mb-3 mb-lg-0'>
 							<label htmlFor='fromField' className='font-weight-bolder'>
-								From
+								<FormattedMessage id='Converter.from' />
 							</label>
 
 							<select
@@ -99,7 +104,6 @@ class Converter extends Component {
 								name='currentBase'
 								value={currentBase}
 								onChange={this.handleChangeBase}
-								placeholder='Choose your option'
 							>
 								{conversionOptions.map((cOption) => (
 									<option key={cOption} value={cOption}>
@@ -110,14 +114,13 @@ class Converter extends Component {
 						</MDBCol>
 						<MDBCol md='4'>
 							<label htmlFor='toField' className='font-weight-bolder'>
-								To
+								<FormattedMessage id='Converter.to' />
 							</label>
 							<select
 								className='browser-default custom-select'
 								id='toField'
 								name='conversionBase'
 								onChange={this.handleChangeSelect}
-								placeholder='Choose your option'
 							>
 								{conversionOptions.map((cOption) => (
 									<option key={cOption} value={cOption}>
@@ -134,7 +137,7 @@ class Converter extends Component {
 							onClick={this.handleConvert}
 							disabled={disableConvert}
 						>
-							Convert
+							<FormattedMessage id='Converter.convert' />
 						</MDBBtn>
 					)}
 				</form>
@@ -161,4 +164,4 @@ const mapDispatchToProps = (dispatch) => ({
 	requestCurrencyLatest: (base) => dispatch(CurrencyActionCreators.getCurrencyLatest(base))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Converter);
+export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Converter));

@@ -1,0 +1,11 @@
+{
+  "App.header": "Conversor de divisas",
+  "Tabs.converter": "Convertir",
+  "Tabs.charts": "Gráficos",
+  "Converter.ammount": "Cantidad:",
+  "Converter.from": "Desde",
+  "Converter.to": "Hacia",
+  "Converter.convert": "Convertir",
+  "Converter.lastUpdate": "Última actualización",
+  "Converter.ammount.placeholder":"Ingrese una cantidad"
+}

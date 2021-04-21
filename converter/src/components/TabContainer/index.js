@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import { MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import Converter from './Converter';
 import CurrencyActionCreators from '../../store/currency/actions';
@@ -33,13 +34,13 @@ class TabContainer extends Component {
 				<MDBNav className='nav-tabs'>
 					<MDBNavItem>
 						<MDBNavLink link to='#' active={activeItem === '1'} onClick={this.toggle('1')} role='tab'>
-							<MDBIcon icon='coins' className='mr-2' /> Converter
+							<MDBIcon icon='coins' className='mr-2' /> <FormattedMessage id='Tabs.converter' />
 						</MDBNavLink>
 					</MDBNavItem>
 					<MDBNavItem>
 						<MDBNavLink link to='#' active={activeItem === '2'} onClick={this.toggle('2')} role='tab'>
 							<MDBIcon far icon='chart-bar' className='mr-2' />
-							Charts
+							<FormattedMessage id='Tabs.charts' />
 						</MDBNavLink>
 					</MDBNavItem>
 				</MDBNav>
@@ -48,7 +49,9 @@ class TabContainer extends Component {
 						<Converter />
 					</MDBTabPane>
 					<MDBTabPane tabId='2' role='tabpanel'>
-						<p className='mt-2'>Charts</p>
+						<p className='mt-2'>
+							<FormattedMessage id='Tabs.charts' />
+						</p>
 					</MDBTabPane>
 				</MDBTabContent>
 			</ContainerWrapper>

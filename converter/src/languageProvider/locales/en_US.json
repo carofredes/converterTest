@@ -1,0 +1,11 @@
+{
+  "App.header": "Currency converter",
+  "Tabs.converter": "Converter",
+  "Tabs.charts": "Charts",
+  "Converter.ammount": "Ammount:",
+  "Converter.from": "From",
+  "Converter.to": "To",
+  "Converter.convert": "Convert",
+  "Converter.lastUpdate": "Last updated",
+  "Converter.ammount.placeholder": "Enter ammount"
+}

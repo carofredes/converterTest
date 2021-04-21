@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { MDBCol, MDBRow } from 'mdbreact';
+import { FormattedMessage } from 'react-intl';
 import ResultsWrapper from './ConversionResult.style';
 import currencyExtraInfo from '../../currencyExtras';
 
@@ -38,7 +39,9 @@ class ConversionResult extends Component {
 						<p className='mb-1 text-center text-md-left'>{`1 ${currentBase} = ${rates[conversionBase]} ${conversionBase}`}</p>
 					</MDBCol>
 					<MDBCol md='6'>
-						<p className='mb-1 text-center text-md-right'>{`Last updated ${date}`}</p>
+						<p className='mb-1 text-center text-md-right'>{`${(
+							<FormattedMessage id='Converter.lastUpdate' />
+						)} ${date}`}</p>
 					</MDBCol>
 				</MDBRow>
 			</ResultsWrapper>
