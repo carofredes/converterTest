@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { MDBRow, MDBCol, MDBBtn } from 'mdbreact';
+import { MDBRow, MDBCol, MDBBtn, MDBIcon } from 'mdbreact';
 import { FormattedMessage } from 'react-intl';
 import { injectIntl } from 'react-intl';
 import CurrencyActionCreators from '../../../store/currency/actions';
@@ -49,7 +49,6 @@ class Converter extends Component {
 	};
 
 	/**
-	 *
 	 * I could had only this method to control both selects
 	 * but as I need to call another function when the base changes,
 	 * I prefered to add another method specific for that
@@ -64,6 +63,17 @@ class Converter extends Component {
 
 	handleConvert = () => {
 		this.setState({ showConversion: true });
+	};
+
+	handleRevertCurrencies = () => {
+		const { requestCurrencyLatest } = this.props;
+
+		const { currentBase, conversionBase } = this.state;
+		this.setState({
+			currentBase: conversionBase,
+			conversionBase: currentBase
+		});
+		requestCurrencyLatest(conversionBase);
 	};
 
 	render() {
@@ -100,41 +110,57 @@ class Converter extends Component {
 								onChange={this.updateAmmountBase}
 							/>
 						</MDBCol>
-						<MDBCol md='4' className='mb-3 mb-lg-0'>
-							<label htmlFor='fromField' className='font-weight-bolder'>
-								<FormattedMessage id='Converter.from' />
-							</label>
 
-							<select
-								className='browser-default custom-select'
-								id='fromField'
-								name='currentBase'
-								value={currentBase}
-								onChange={this.handleChangeBase}
-							>
-								{conversionOptions.map((cOption) => (
-									<option key={cOption} value={cOption}>
-										{cOption} - {cOption && currencyExtraInfo[cOption].description}
-									</option>
-								))}
-							</select>
-						</MDBCol>
-						<MDBCol md='4'>
-							<label htmlFor='toField' className='font-weight-bolder'>
-								<FormattedMessage id='Converter.to' />
-							</label>
-							<select
-								className='browser-default custom-select'
-								id='toField'
-								name='conversionBase'
-								onChange={this.handleChangeSelect}
-							>
-								{conversionOptions.map((cOption) => (
-									<option key={cOption} value={cOption}>
-										{cOption} - {cOption && currencyExtraInfo[cOption].description}
-									</option>
-								))}
-							</select>
+						<MDBCol md='8' className='mb-3 mb-lg-0'>
+							<MDBRow>
+								<MDBCol size='12' md='5'>
+									<label htmlFor='fromField' className='font-weight-bolder'>
+										<FormattedMessage id='Converter.from' />
+									</label>
+
+									<select
+										className='browser-default custom-select'
+										id='fromField'
+										name='currentBase'
+										value={currentBase}
+										onChange={this.handleChangeBase}
+									>
+										{conversionOptions.map((cOption) => (
+											<option key={cOption} value={cOption}>
+												{cOption} - {cOption && currencyExtraInfo[cOption].description}
+											</option>
+										))}
+									</select>
+								</MDBCol>
+								<MDBCol size='12' md='2' className='d-flex align-items-end justify-content-center'>
+									<MDBBtn
+										size='sm'
+										className='m-3 m-md-0 mb-md-2 d-flex justify-content-center'
+										outline
+										onClick={this.handleRevertCurrencies}
+									>
+										<MDBIcon icon='exchange-alt' />
+									</MDBBtn>
+								</MDBCol>
+								<MDBCol size='12' md='5'>
+									<label htmlFor='toField' className='font-weight-bolder'>
+										<FormattedMessage id='Converter.to' />
+									</label>
+									<select
+										className='browser-default custom-select'
+										id='toField'
+										name='conversionBase'
+										onChange={this.handleChangeSelect}
+										value={conversionBase}
+									>
+										{conversionOptions.map((cOption) => (
+											<option key={cOption} value={cOption}>
+												{cOption} - {cOption && currencyExtraInfo[cOption].description}
+											</option>
+										))}
+									</select>
+								</MDBCol>
+							</MDBRow>
 						</MDBCol>
 					</MDBRow>
 					{!showConversion && (
