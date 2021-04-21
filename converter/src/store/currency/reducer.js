@@ -5,7 +5,8 @@ const initialState = {
 	base: '',
 	date: '',
 	conversionOptions: [],
-	rates: []
+	rates: [],
+	error: false
 };
 
 const updateCurrencyInfo = (payload, state) => {
@@ -31,6 +32,8 @@ const CurrencyReducer = (state, action) => {
 	switch (action.type) {
 		case CurrencyConstants.UPDATE_CURRENCY:
 			return updateCurrencyInfo(action.payload, state);
+		case CurrencyConstants.UPDATE_CURRENCY_FAIL:
+			return { ...state, error: true };
 
 		default:
 			return state;

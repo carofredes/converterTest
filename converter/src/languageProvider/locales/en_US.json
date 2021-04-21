@@ -7,5 +7,6 @@
   "Converter.to": "To",
   "Converter.convert": "Convert",
   "Converter.lastUpdate": "Last updated",
-  "Converter.ammount.placeholder": "Enter ammount"
+  "Converter.ammount.placeholder": "Enter ammount",
+  "Converter.error":"Something went wrong, please refresh the page"
 }

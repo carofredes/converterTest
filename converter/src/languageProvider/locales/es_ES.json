@@ -7,5 +7,6 @@
   "Converter.to": "Hacia",
   "Converter.convert": "Convertir",
   "Converter.lastUpdate": "Última actualización",
-  "Converter.ammount.placeholder":"Ingrese una cantidad"
+  "Converter.ammount.placeholder":"Ingrese una cantidad",
+  "Converter.error":"Algo salió mal, por favor actualice la página"
 }

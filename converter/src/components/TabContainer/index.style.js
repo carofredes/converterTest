@@ -15,6 +15,10 @@ const ContainerWrapper = styled(MDBContainer)`
 	display: flex;
 	flex-direction: column;
 
+	.nav-link {
+		color: #155799;
+	}
+
 	.tab-content {
 		flex: 1;
 	}

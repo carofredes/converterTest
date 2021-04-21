@@ -12,12 +12,12 @@ function App() {
 	return (
 		<IntlProvider locale={currentAppLocale.locale} messages={currentAppLocale.messages} textComponent={React.Fragment}>
 			<BrowserRouter>
-				<div className='App'>
+				<main className='App'>
 					<Header />
 					<div className='background-gradient'></div>
 					<TabContainer />
 					<Footer />
-				</div>
+				</main>
 			</BrowserRouter>
 		</IntlProvider>
 	);

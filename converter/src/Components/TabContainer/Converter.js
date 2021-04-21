@@ -69,10 +69,17 @@ class Converter extends Component {
 	render() {
 		const { ammountBase, ammountConverted, showConversion, currentBase, conversionBase, disableConvert } = this.state;
 		const {
-			currency: { conversionOptions, rates, date },
+			currency: { conversionOptions, rates, date, error },
 			intl: { formatMessage }
 		} = this.props;
 
+		if (error) {
+			return (
+				<p className='text-center p-4'>
+					<FormattedMessage id='Converter.error' />
+				</p>
+			);
+		}
 		return (
 			<ConverterWrapper className='p-3 p-lg-5'>
 				<form className='d-flex flex-column'>

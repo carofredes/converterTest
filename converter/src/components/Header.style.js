@@ -12,6 +12,7 @@ const MDBNavbarWrapper = styled.div`
 
 	.logo {
 		height: 25px;
+		width: 25px;
 		transform: rotate(134deg);
 	}
 

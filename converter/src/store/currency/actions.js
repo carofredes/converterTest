@@ -11,6 +11,9 @@ const CurrencyActionCreators = {
 			});
 		} catch (error) {
 			console.log('error', error.message);
+			dispatch({
+				type: CurrencyConstants.UPDATE_CURRENCY_FAIL
+			});
 		}
 	},
 	getCurrencyLatest: (base) => async (dispatch, getState) => {
@@ -23,6 +26,9 @@ const CurrencyActionCreators = {
 			});
 		} catch (error) {
 			console.log('error', error.message);
+			dispatch({
+				type: CurrencyConstants.UPDATE_CURRENCY_FAIL
+			});
 		}
 	}
 };
