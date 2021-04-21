@@ -17,18 +17,15 @@ class ConversionResult extends Component {
 		return (
 			<ResultsWrapper>
 				{/* Result Container */}
-				<MDBRow className='ammount-base'>
-					<img
-						src={`https://www.countryflags.io/${currentBase && currencyExtraInfo[currentBase].flag}/flat/24.png`}
-						alt='flag'
-					/>
+				<MDBRow className='ammount-base mb-3 mb-md-0'>
+					<img src={`https://flagcdn.com/24x18/${currentBase && currencyExtraInfo[currentBase].flag}.png`} alt='flag' />
 					<p className='m-0 ml-2'>{` ${ammountBase || 0} ${
 						currencyExtraInfo[currentBase].description || currentBase
 					} =`}</p>
 				</MDBRow>
 				<MDBRow className='ammount-converted mb-5'>
 					<img
-						src={`https://www.countryflags.io/${conversionBase && currencyExtraInfo[conversionBase].flag}/flat/48.png`}
+						src={`https://flagcdn.com/48x36/${conversionBase && currencyExtraInfo[conversionBase].flag}.png`}
 						alt='flag'
 					/>
 					<p className='m-0 ml-2'>{` ${this.calculateConversion()} ${
