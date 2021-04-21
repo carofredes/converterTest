@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { screenSizes } from '../../screenSizes';
+import { screenSizes } from '../../../screenSizes';
 
 const ResultsWrapper = styled.div`
 	padding: 20px 0px;

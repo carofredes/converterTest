@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 import { FormattedMessage } from 'react-intl';
 import { injectIntl } from 'react-intl';
-import CurrencyActionCreators from '../../store/currency/actions';
-import ConversionResult from './ConversionResult';
-import currencyExtraInfo from '../../currencyExtras';
-import ConverterWrapper from './Converter.style';
+import CurrencyActionCreators from '../../../store/currency/actions';
+import ConversionResult from '../ConversionResult';
+import currencyExtraInfo from '../../../currencyExtras';
+import ConverterWrapper from './index.style';
 
 class Converter extends Component {
 	constructor(props) {
