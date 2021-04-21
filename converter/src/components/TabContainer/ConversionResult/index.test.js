@@ -22,7 +22,7 @@ describe('<ConversionResult />', () => {
 	it('should render <ConversionResult /> when receiving all props', () => {
 		wrapper.setProps({
 			...requiredProps,
-			ammountBase: 1
+			amountBase: 1
 		});
 		expect(wrapper.find(ResultsWrapper)).toHaveLength(1);
 	});
@@ -34,7 +34,7 @@ describe('<ConversionResult />', () => {
 });
 describe('<ConversionResult /> Test conversion functionality', () => {
 	const props = {
-		ammountBase: 1,
+		amountBase: 1,
 		rates: { USD: 0.8 },
 		currentBase: 'EUR',
 		conversionBase: 'USD',
@@ -45,11 +45,11 @@ describe('<ConversionResult /> Test conversion functionality', () => {
 		wrapper = shallow(<ConversionResult {...props} />);
 	});
 
-	it('should use the ammount 1 for the calculation result', () => {
-		expect(wrapper.find('.ammount-base p').text()).toEqual(' 1 Euro =');
+	it('should use the amount 1 for the calculation result', () => {
+		expect(wrapper.find('.amount-base p').text()).toEqual(' 1 Euro =');
 	});
 
 	it('should calculate the conversion and display 0.8', () => {
-		expect(wrapper.find('.ammount-converted p').text()).toEqual(' 0.8 United States dollar');
+		expect(wrapper.find('.amount-converted p').text()).toEqual(' 0.8 United States dollar');
 	});
 });

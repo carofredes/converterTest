@@ -7,23 +7,23 @@ import PropTypes from 'prop-types';
 
 class ConversionResult extends Component {
 	calculateConversion = () => {
-		const { rates, ammountBase, conversionBase } = this.props;
+		const { rates, amountBase, conversionBase } = this.props;
 
-		return ammountBase * rates[conversionBase];
+		return amountBase * rates[conversionBase];
 	};
 
 	render() {
-		const { ammountBase, rates, currentBase, conversionBase, date } = this.props;
+		const { amountBase, rates, currentBase, conversionBase, date } = this.props;
 		return (
 			<ResultsWrapper>
 				{/* Result Container */}
-				<MDBRow className='ammount-base mb-3 mb-md-0'>
+				<MDBRow className='amount-base mb-3 mb-md-0'>
 					<img src={`https://flagcdn.com/24x18/${currentBase && currencyExtraInfo[currentBase].flag}.png`} alt='flag' />
-					<p className='m-0 ml-2'>{` ${ammountBase || 0} ${
+					<p className='m-0 ml-2'>{` ${amountBase || 0} ${
 						currencyExtraInfo[currentBase].description || currentBase
 					} =`}</p>
 				</MDBRow>
-				<MDBRow className='ammount-converted mb-5'>
+				<MDBRow className='amount-converted mb-5'>
 					<img
 						src={`https://flagcdn.com/48x36/${conversionBase && currencyExtraInfo[conversionBase].flag}.png`}
 						alt='flag'
@@ -48,7 +48,7 @@ class ConversionResult extends Component {
 }
 
 ConversionResult.propTypes = {
-	ammountBase: PropTypes.number,
+	amountBase: PropTypes.number,
 	rates: PropTypes.shape({ currency: PropTypes.number }).isRequired,
 	currentBase: PropTypes.string.isRequired,
 	conversionBase: PropTypes.string.isRequired,

@@ -12,8 +12,8 @@ class Converter extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			ammountBase: '',
-			ammountConverted: 0,
+			amountBase: '',
+			amountConverted: 0,
 			currentBase: '',
 			conversionBase: '',
 			showConversion: false,
@@ -33,10 +33,10 @@ class Converter extends Component {
 		}
 	}
 
-	updateAmmountBase = (e) => {
+	updateAmountBase = (e) => {
 		const value = e.target.valueAsNumber || '';
 
-		this.setState({ ammountBase: value, disableConvert: value < 0 || value === '' });
+		this.setState({ amountBase: value, disableConvert: value < 0 || value === '' });
 	};
 
 	handleChangeBase = (e) => {
@@ -77,7 +77,7 @@ class Converter extends Component {
 	};
 
 	render() {
-		const { ammountBase, ammountConverted, showConversion, currentBase, conversionBase, disableConvert } = this.state;
+		const { amountBase, amountConverted, showConversion, currentBase, conversionBase, disableConvert } = this.state;
 		const {
 			currency: { conversionOptions, rates, date, error },
 			intl: { formatMessage }
@@ -95,19 +95,19 @@ class Converter extends Component {
 				<form className='d-flex flex-column'>
 					<MDBRow>
 						<MDBCol md='4' className='mb-3 mb-lg-0'>
-							<label htmlFor='ammountFromField' className='font-weight-bolder'>
-								<FormattedMessage id='Converter.ammount' />
+							<label htmlFor='amountFromField' className='font-weight-bolder'>
+								<FormattedMessage id='Converter.amount' />
 							</label>
 							<input
 								type='number'
-								id='ammountFromField'
+								id='amountFromField'
 								className='form-control'
-								value={ammountBase}
+								value={amountBase}
 								placeholder={formatMessage({
-									id: 'Converter.ammount.placeholder'
+									id: 'Converter.amount.placeholder'
 								})}
 								required
-								onChange={this.updateAmmountBase}
+								onChange={this.updateAmountBase}
 							/>
 						</MDBCol>
 
@@ -176,9 +176,9 @@ class Converter extends Component {
 				</form>
 				{showConversion && (
 					<ConversionResult
-						ammountBase={ammountBase}
+						amountBase={amountBase}
 						currentBase={currentBase}
-						ammountConverted={ammountConverted}
+						amountConverted={amountConverted}
 						conversionBase={conversionBase}
 						rates={rates}
 						date={date}

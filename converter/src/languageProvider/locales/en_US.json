@@ -1,12 +1,13 @@
 {
   "App.header": "Currency converter",
+  "App.commingSoon": "Comming soon",
   "Tabs.converter": "Converter",
   "Tabs.charts": "Charts",
-  "Converter.ammount": "Ammount:",
+  "Converter.amount": "Amount:",
   "Converter.from": "From",
   "Converter.to": "To",
   "Converter.convert": "Convert",
   "Converter.lastUpdate": "Last updated",
-  "Converter.ammount.placeholder": "Enter ammount",
+  "Converter.amount.placeholder": "Enter amount",
   "Converter.error":"Something went wrong, please refresh the page"
 }

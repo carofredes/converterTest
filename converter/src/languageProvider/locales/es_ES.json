@@ -1,12 +1,13 @@
 {
   "App.header": "Conversor de divisas",
+  "App.commingSoon": "En construcción",
   "Tabs.converter": "Convertir",
   "Tabs.charts": "Gráficos",
-  "Converter.ammount": "Cantidad:",
+  "Converter.amount": "Cantidad:",
   "Converter.from": "Desde",
   "Converter.to": "Hacia",
   "Converter.convert": "Convertir",
   "Converter.lastUpdate": "Última actualización",
-  "Converter.ammount.placeholder":"Ingrese una cantidad",
+  "Converter.amount.placeholder":"Ingrese una cantidad",
   "Converter.error":"Algo salió mal, por favor actualice la página"
 }

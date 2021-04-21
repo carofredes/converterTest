@@ -49,8 +49,8 @@ class TabContainer extends Component {
 						<Converter />
 					</MDBTabPane>
 					<MDBTabPane tabId='2' role='tabpanel'>
-						<p className='mt-2'>
-							<FormattedMessage id='Tabs.charts' />
+						<p className='mt-2 p-3'>
+							<FormattedMessage id='App.commingSoon' />
 						</p>
 					</MDBTabPane>
 				</MDBTabContent>

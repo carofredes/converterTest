@@ -4,7 +4,7 @@ import { screenSizes } from '../../../screenSizes';
 const ResultsWrapper = styled.div`
 	padding: 20px 0px;
 
-	.ammount-base {
+	.amount-base {
 		font-size: 14px;
 		color: #5c667b;
 		font-weight: 600;
@@ -12,7 +12,7 @@ const ResultsWrapper = styled.div`
 		align-items: center;
 	}
 
-	.ammount-converted {
+	.amount-converted {
 		flex-wrap: nowrap;
 		align-items: flex-start;
 		line-height: 34px;
@@ -27,11 +27,11 @@ const ResultsWrapper = styled.div`
 	}
 
 	@media ${screenSizes.tablet} {
-		.ammount-base {
+		.amount-base {
 			font-size: 16px;
 		}
 
-		.ammount-converted {
+		.amount-converted {
 			line-height: inherit;
 			font-size: 30px;
 			flex-wrap: wrap;
