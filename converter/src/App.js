@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
-import Header from './components/Header';
-import TabContainer from './components/TabContainer';
+import Header from './Components/Header';
+import TabContainer from './Components/TabContainer';
 import { IntlProvider } from 'react-intl';
 import { getCurrentLocale } from './languageProvider/languageProvider';
 
