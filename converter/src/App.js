@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './components/Header';
 import TabContainer from './components/TabContainer';
+import TableRates from './components/TableRates';
 import { IntlProvider } from 'react-intl';
 import { getCurrentLocale } from './languageProvider/languageProvider';
 
@@ -15,6 +16,7 @@ function App() {
 					<Header />
 					<div className='background-gradient'></div>
 					<TabContainer />
+					<TableRates />
 				</main>
 			</BrowserRouter>
 		</IntlProvider>

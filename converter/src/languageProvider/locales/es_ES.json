@@ -9,5 +9,10 @@
   "Converter.convert": "Convertir",
   "Converter.lastUpdate": "Última actualización",
   "Converter.amount.placeholder":"Ingrese una cantidad",
-  "Converter.error":"Algo salió mal, por favor actualice la página"
+  "Converter.error":"Algo salió mal, por favor actualice la página",
+  "TableRates.title": "Tasas de comparación del banco central europeo",
+  "TableRates.select.base": "Seleccione la moneda base:",
+  "TableRates.th.currency":"Divisa",
+  "TableRates.th.conversion":"Conversión",
+  "TableRates.th.change":"Cambio(24hs)"
 }

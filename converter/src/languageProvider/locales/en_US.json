@@ -9,5 +9,11 @@
   "Converter.convert": "Convert",
   "Converter.lastUpdate": "Last updated",
   "Converter.amount.placeholder": "Enter amount",
-  "Converter.error":"Something went wrong, please refresh the page"
+  "Converter.error":"Something went wrong, please refresh the page",
+  "TableRates.title": "European Central Bank Comparison Rates",
+  "TableRates.select.base": "Select the base currency:",
+  "TableRates.th.currency":"Currency",
+  "TableRates.th.conversion":"Conversion",
+  "TableRates.th.change":"Change(24hs)"
+
 }

@@ -1,13 +1,13 @@
 import CurrencyConstants from './constants';
-import { GETEuroLatest, GETCurrencyLatest } from '../../apiCalls/currency';
+import { GETEuroLatest, GETCurrencyLatest, GETEuroYesterdayRates, GETYesterdayRates } from '../../apiCalls/currency';
 
 const CurrencyActionCreators = {
-	getEuroLatest: () => async (dispatch, getState) => {
+	getEuroYesterdayRatess: (currencyInfo) => async (dispatch) => {
 		try {
-			const { data: currencyInfo } = await GETEuroLatest();
+			const { data: currencyYesterdayInfo } = await GETEuroYesterdayRates();
 			dispatch({
-				type: CurrencyConstants.UPDATE_CURRENCY,
-				payload: currencyInfo
+				type: CurrencyConstants.UPDATE_YESTERDAY_CURRENCY,
+				payload: { currencyInfo, currencyYesterdayInfo }
 			});
 		} catch (error) {
 			console.log('error', error.message);
@@ -16,7 +16,39 @@ const CurrencyActionCreators = {
 			});
 		}
 	},
-	getCurrencyLatest: (base) => async (dispatch, getState) => {
+	getYesterdayCurrencyValue: (base) => async (dispatch) => {
+		try {
+			const { data: currencyInfo } = await GETCurrencyLatest(base);
+			const { data: currencyYesterdayInfo } = await GETYesterdayRates(base);
+
+			dispatch({
+				type: CurrencyConstants.UPDATE_YESTERDAY_CURRENCY,
+				payload: { currencyInfo, currencyYesterdayInfo }
+			});
+		} catch (error) {
+			console.log('error', error.message);
+			dispatch({
+				type: CurrencyConstants.UPDATE_CURRENCY_FAIL
+			});
+		}
+	},
+	getEuroLatest: () => async (dispatch) => {
+		try {
+			const { data: currencyInfo } = await GETEuroLatest();
+
+			dispatch({
+				type: CurrencyConstants.UPDATE_CURRENCY,
+				payload: currencyInfo
+			});
+			dispatch(CurrencyActionCreators.getEuroYesterdayRatess(currencyInfo));
+		} catch (error) {
+			console.log('error', error.message);
+			dispatch({
+				type: CurrencyConstants.UPDATE_CURRENCY_FAIL
+			});
+		}
+	},
+	getCurrencyLatest: (base) => async (dispatch) => {
 		try {
 			const { data: currencyInfo } = await GETCurrencyLatest(base);
 
