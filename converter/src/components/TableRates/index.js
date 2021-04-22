@@ -59,13 +59,13 @@ class TableRates extends Component {
 				<MDBTable hover>
 					<MDBTableHead>
 						<tr>
-							<th>
+							<th className='text-left'>
 								<FormattedMessage id='TableRates.th.currency' />
 							</th>
 							<th>
 								<FormattedMessage id='TableRates.th.conversion' />
 							</th>
-							<th>
+							<th className='text-right'>
 								<FormattedMessage id='TableRates.th.change' />
 							</th>
 						</tr>
@@ -75,7 +75,7 @@ class TableRates extends Component {
 							if (currency.currency !== currentBase) {
 								return (
 									<tr key={currency.currency}>
-										<td>
+										<td className='text-left'>
 											<img
 												src={`https://flagcdn.com/24x18/${
 													currency.currency && currencyExtraInfo[currency.currency].flag
@@ -85,7 +85,9 @@ class TableRates extends Component {
 											{currencyExtraInfo[currency.currency].description}
 										</td>
 										<td>{currency.rate}</td>
-										<td className={currency.rateChange < 0 ? 'change-negative' : ''}>{currency.rateChange}%</td>
+										<td className={currency.rateChange < 0 ? 'change-negative text-right' : 'text-right'}>
+											{currency.rateChange}%
+										</td>
 									</tr>
 								);
 							} else return <Fragment key='empty'></Fragment>;

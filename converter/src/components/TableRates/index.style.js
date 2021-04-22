@@ -20,6 +20,11 @@ const TableContainerWrapper = styled(MDBContainer)`
 	}
 	@media ${screenSizes.big} {
 		width: 90%;
+
+		.table {
+			width: 70%;
+			margin: 0 auto;
+		}
 	}
 `;
 
