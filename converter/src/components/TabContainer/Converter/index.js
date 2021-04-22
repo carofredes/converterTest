@@ -7,6 +7,7 @@ import CurrencyActionCreators from '../../../store/currency/actions';
 import ConversionResult from '../ConversionResult';
 import currencyExtraInfo from '../../../currencyExtras';
 import ConverterWrapper from './index.style';
+import PropTypes from 'prop-types';
 
 class Converter extends Component {
 	constructor(props) {
@@ -137,6 +138,7 @@ class Converter extends Component {
 										size='sm'
 										className='m-3 m-md-0 mb-md-2 d-flex justify-content-center'
 										outline
+										aria-label='Revert currencies'
 										onClick={this.handleRevertCurrencies}
 									>
 										<MDBIcon icon='exchange-alt' />
@@ -169,6 +171,7 @@ class Converter extends Component {
 							className='btn-convert mt-5  align-self-end'
 							onClick={this.handleConvert}
 							disabled={disableConvert}
+							aria-label='Convert'
 						>
 							<FormattedMessage id='Converter.convert' />
 						</MDBBtn>
@@ -188,6 +191,16 @@ class Converter extends Component {
 		);
 	}
 }
+
+Converter.propTypes = {
+	currency: PropTypes.shape({
+		base: PropTypes.string,
+		conversionOptions: PropTypes.array,
+		rates: PropTypes.shape({ currency: PropTypes.number }),
+		date: PropTypes.string
+	}).isRequired,
+	requestCurrencyLatest: PropTypes.func
+};
 
 const mapStateToProps = (state) => ({
 	currency: state.currency

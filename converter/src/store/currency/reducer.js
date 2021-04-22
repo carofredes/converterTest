@@ -5,7 +5,7 @@ const initialState = {
 	base: '',
 	date: '',
 	conversionOptions: [],
-	rates: [],
+	rates: {},
 	error: false,
 	yesterdayValues: []
 };

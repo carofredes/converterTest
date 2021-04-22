@@ -5,6 +5,7 @@ import { MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink, MDBIcon } fr
 import Converter from './Converter';
 import CurrencyActionCreators from '../../store/currency/actions';
 import ContainerWrapper from './index.style';
+import PropTypes from 'prop-types';
 
 class TabContainer extends Component {
 	constructor(props) {
@@ -58,6 +59,10 @@ class TabContainer extends Component {
 		);
 	}
 }
+
+TabContainer.propTypes = {
+	requestEuroLatest: PropTypes.func
+};
 
 const mapStateToProps = (state) => ({
 	currencyInfo: state.currency

@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import TableContainerWrapper from './index.style';
 import CurrencyActionCreators from '../../store/currency/actions';
 import currencyExtraInfo from '../../currencyExtras';
+import PropTypes from 'prop-types';
 
 class TableRates extends Component {
 	constructor(props) {
@@ -95,6 +96,18 @@ class TableRates extends Component {
 		);
 	}
 }
+
+TableRates.propTypes = {
+	currencyInfo: PropTypes.shape({
+		base: PropTypes.string,
+		conversionOptions: PropTypes.array,
+		rates: PropTypes.shape({ currency: PropTypes.number }),
+		date: PropTypes.string,
+		yesterdayValues: PropTypes.array
+	}).isRequired,
+	requestYesterdayCurrencyValue: PropTypes.func
+};
+
 const mapStateToProps = (state) => ({
 	currencyInfo: state.currency
 });
